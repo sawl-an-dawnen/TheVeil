@@ -8,6 +8,10 @@ TagManager:
   - SFX-2
   - FootSteps
   - Cursor_Prompt
+  - Note_Prompt
+  - Dialogue_Prompt
+  - Note_Visual
+  - Note_Controller
   layers:
   - Default
   - TransparentFX
