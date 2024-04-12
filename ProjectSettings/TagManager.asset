@@ -12,6 +12,7 @@ TagManager:
   - Dialogue_Prompt
   - Note_Visual
   - Note_Controller
+  - Dialogue_Controller
   layers:
   - Default
   - TransparentFX

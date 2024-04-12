@@ -4,7 +4,7 @@ using UnityEngine.Video;
 public class TVControl : MonoBehaviour, IInteractable
 {
     public GameObject video;
-    public GameObject backLight;
+    //public GameObject backLight;
     public AudioClip remoteSound;
 
     private AudioSource audioSource;
@@ -30,7 +30,7 @@ public class TVControl : MonoBehaviour, IInteractable
     {
         audioSource.Stop();
         video.SetActive(!video.activeSelf);
-        backLight.SetActive(!backLight.activeSelf);
+        //backLight.SetActive(!backLight.activeSelf);
         audioSource.PlayOneShot(remoteSound);
     }
     public string Prompt

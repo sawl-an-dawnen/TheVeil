@@ -8,15 +8,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Unity.VisualScripting;
+
 
 #if UNITY_EDITOR
-    using UnityEditor;
+using UnityEditor;
     using System.Net;
 #endif
 
 public class FirstPersonController : MonoBehaviour
 {
     private Rigidbody rb;
+    public Animator animator;
 
     #region Camera Movement Variables
 
@@ -373,6 +376,23 @@ public class FirstPersonController : MonoBehaviour
             // Calculate how fast we should be moving
             Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
+
+            //Animation bool set
+            if (Mathf.Abs(targetVelocity.x) > 0f || targetVelocity.z > 0f)
+            {
+                animator.SetBool("Forward", true);
+                animator.SetBool("Backward", false);
+            }
+            else if (targetVelocity.z < 0f)
+            {
+                animator.SetBool("Forward", false);
+                animator.SetBool("Backward", true);
+            }
+            else if (targetVelocity.magnitude == 0f) 
+            {
+                animator.SetBool("Forward", false);
+                animator.SetBool("Backward", false);
+            }
             // Checks if player is walking and isGrounded
             // Will allow head bob
             if (targetVelocity.x != 0 || targetVelocity.z != 0 && isGrounded)
@@ -384,7 +404,7 @@ public class FirstPersonController : MonoBehaviour
                 isWalking = false;
             }
 
-            // All movement calculations shile sprint is active
+            // All movement calculations while sprint is active
             if (enableSprint && Input.GetKey(sprintKey) && sprintRemaining > 0f && !isSprintCooldown)
             {
                 targetVelocity = transform.TransformDirection(targetVelocity) * sprintSpeed;
@@ -728,8 +748,14 @@ public class FirstPersonController : MonoBehaviour
 
         #endregion
 
+        #region Animator
+        EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
+        GUILayout.Label("Animation", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
+        fpc.animator = (Animator)EditorGUILayout.ObjectField(new GUIContent("Animator", "Animator component attached to player."), fpc.animator, typeof(Animator), true);
+        #endregion
+
         //Sets any changes from the prefab
-        if(GUI.changed)
+        if (GUI.changed)
         {
             EditorUtility.SetDirty(fpc);
             Undo.RecordObject(fpc, "FPC Change");

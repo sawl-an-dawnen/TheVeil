@@ -64,6 +64,6 @@ public class VideoColorToLight : MonoBehaviour
     void OnDestroy()
     {
         // Clean up RenderTexture
-        renderTexture.Release();
+        //renderTexture.Release();
     }
 }
