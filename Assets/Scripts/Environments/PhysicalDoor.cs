@@ -20,7 +20,7 @@ public class PhysicalDoor : MonoBehaviour, IInteractable
 
     private void Start()
     {
-        //audioSource = GameObject.FindWithTag("Player_AudioSource").GetComponent<AudioSource>();
+        audioSource = GameObject.FindWithTag("SFX-1").GetComponent<AudioSource>();
     }
 
     private void Update()
