@@ -9,11 +9,10 @@ public class LightSwitch : MonoBehaviour, IInteractable
     private AudioSource audioSource;
     private PhysicalLight proxy;
 
-    void Start() {
+    void Awake() {
         audioSource = GameObject.FindGameObjectWithTag("SFX-2").GetComponent<AudioSource>();
         proxy = lights[0];
     }
-
 
     void Update()
     {

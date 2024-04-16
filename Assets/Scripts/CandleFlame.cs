@@ -8,12 +8,11 @@ public class CandleFlame : MonoBehaviour
     public float flickerIntensity = 0.1f;
     public float moveSpeed = 0.5f;
     public float moveRange = 0.1f;
-
     private Vector3 initialLocalPosition;
     private Vector3 initialLocalScale;
     private float timeOffset;
 
-    void Start()
+    void Awake()
     {
         initialLocalPosition = transform.localPosition;
         initialLocalScale = transform.localScale;

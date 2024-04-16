@@ -5,12 +5,11 @@ public class VideoColorToLight : MonoBehaviour
 {
     public Light targetLight;
     public VideoPlayer videoPlayer;
-
     private int sampleWidth;
     private int sampleHeight;
     private RenderTexture renderTexture;
 
-    void Start()
+    void Awake()
     {
         // Create a RenderTexture for sampling video frame
         renderTexture = videoPlayer.targetTexture;

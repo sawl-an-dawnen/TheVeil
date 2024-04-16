@@ -7,24 +7,18 @@ public class DialogueController : MonoBehaviour
     public GameObject dialogueCanvas;
     public GameObject promptCanvas;
     public GameObject crosshairCanvas;
-
-
     public TextMeshProUGUI textUI;
     public Button rightButton;
     public Button closeButton;
-
     private string[] lines;
-
     private int i = 0;
     private bool active = false;
-
     private FirstPersonController control;
     private Interactor interactor;
-
     private Rigidbody rb;
     private Camera playerCamera;
 
-    private void Start()
+    private void Awake()
     {
         control = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>();
         interactor = GameObject.FindGameObjectWithTag("Player").GetComponent<Interactor>();

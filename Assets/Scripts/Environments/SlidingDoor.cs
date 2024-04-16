@@ -10,18 +10,16 @@ public class SlidingDoor : MonoBehaviour, IInteractable
     public AudioClip closeClip;
     public bool locked = false;
     public AudioClip lockedClip;
-
     [HideInInspector]
     public bool isOpen = false;
     public bool zAxis = false;
     private AudioSource audioSource;
     private bool coroutineRunning = false;
     private string text;
-
     private float x = 0f;
     private float z = 0f;
 
-    private void Start()
+    private void Awake()
     {
         //audioSource = GameObject.FindWithTag("Player_AudioSource").GetComponent<AudioSource>();
         if (zAxis)

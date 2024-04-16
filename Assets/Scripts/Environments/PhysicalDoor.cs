@@ -11,14 +11,13 @@ public class PhysicalDoor : MonoBehaviour, IInteractable
     public AudioClip closeClip;
     public bool locked = false;
     public AudioClip lockedClip;
-
     [HideInInspector]
     public bool isOpen = false;
     private AudioSource audioSource;
     private bool coroutineRunning = false;
     private string text;
 
-    private void Start()
+    private void Awake()
     {
         audioSource = GameObject.FindWithTag("SFX-1").GetComponent<AudioSource>();
     }

@@ -9,17 +9,12 @@ interface IInteractable
 public class Interactor : MonoBehaviour
 {
     public float interactRange = 3f;
-
     private Transform interactorSource;
     private TextMeshProUGUI cursorPrompt;
 
     private void Awake()
     {
         interactorSource = Camera.main.transform;
-    }
-
-    private void Start()
-    {
         cursorPrompt = GameObject.FindGameObjectWithTag("Cursor_Prompt").GetComponent<TextMeshProUGUI>();
     }
 

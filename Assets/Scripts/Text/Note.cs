@@ -4,11 +4,9 @@ public class Note : MonoBehaviour, IInteractable
 {
     public string[] pages;
     public Texture2D visual;
-
     private NoteController noteController;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         noteController = GameObject.FindGameObjectWithTag("Note_Controller").GetComponent<NoteController>();
     }

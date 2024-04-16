@@ -13,6 +13,7 @@ TagManager:
   - Note_Visual
   - Note_Controller
   - Dialogue_Controller
+  - Fade_Controller
   layers:
   - Default
   - TransparentFX

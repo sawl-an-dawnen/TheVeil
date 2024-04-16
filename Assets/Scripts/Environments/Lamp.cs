@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class Lamp : MonoBehaviour, IInteractable
 {
-    
     public AudioClip sound;
     public bool power = true;
     public bool status = false;
@@ -11,8 +10,7 @@ public class Lamp : MonoBehaviour, IInteractable
     private AudioSource audioSource;
     private Light lightComponent;
 
-
-    void Start()
+    void Awake()
     {
         audioSource = GameObject.FindGameObjectWithTag("SFX-2").GetComponent<AudioSource>();
         lightComponent = lightComponent = GetComponentInChildren<Light>();

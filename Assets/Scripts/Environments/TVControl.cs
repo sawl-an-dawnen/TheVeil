@@ -4,13 +4,11 @@ using UnityEngine.Video;
 public class TVControl : MonoBehaviour, IInteractable
 {
     public GameObject video;
-    //public GameObject backLight;
     public AudioClip remoteSound;
-
     private AudioSource audioSource;
     private string text;
 
-    void Start() 
+    void Awake() 
     {
         audioSource = GameObject.FindGameObjectWithTag("SFX-2").GetComponent<AudioSource>();
     }

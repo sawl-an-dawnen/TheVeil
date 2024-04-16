@@ -11,8 +11,7 @@ public class Lighter : MonoBehaviour, IInteractable
     private bool status = false;
     private AudioSource audioSource;
 
-
-    private void Start()
+    private void Awake()
     {
         audioSource = GameObject.FindGameObjectWithTag("SFX-2").GetComponent<AudioSource>();
     }

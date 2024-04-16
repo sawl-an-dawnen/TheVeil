@@ -2,17 +2,13 @@ using UnityEngine;
 
 public class PhysicalLight : MonoBehaviour
 {
-
     public Material onMat;
     public Material offMat;
     public bool power = true;
     public bool status = false;
-
     private Light lightComponent;
 
-
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         lightComponent = GetComponentInChildren<Light>();
     }

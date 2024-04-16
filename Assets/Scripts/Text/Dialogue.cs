@@ -4,11 +4,9 @@ public class Dialogue : MonoBehaviour, IInteractable
 {
     public string[] lines;
     public GameObject lookAtObject;
-
     private DialogueController dialogueController;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         dialogueController = GameObject.FindGameObjectWithTag("Dialogue_Controller").GetComponent<DialogueController>();
     }

@@ -7,20 +7,16 @@ public class NoteController : MonoBehaviour
     public GameObject noteCanvas;
     public RawImage visualUI;
     public TextMeshProUGUI textUI;
-
     public Button leftButton;
     public Button rightButton;
     public Button closeButton;
- 
     private string[] pages;
-
     private int i = 0;
     private bool active = false;
-
     private FirstPersonController control;
     private Interactor interactor;
 
-    private void Start()
+    private void Awake()
     {
         control = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>();
         interactor = GameObject.FindGameObjectWithTag("Player").GetComponent<Interactor>();
