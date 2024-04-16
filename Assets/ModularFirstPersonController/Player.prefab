@@ -1248,7 +1248,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8482693500280739194
 Transform:
   m_ObjectHideFlags: 0
@@ -4273,6 +4273,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 4719710264058209671, guid: 12f7cb746cc1d804f830f5d9f3b3d433, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5738997441213922733, guid: 12f7cb746cc1d804f830f5d9f3b3d433, type: 3}
       propertyPath: m_CastShadows
       value: 0
@@ -4289,14 +4293,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 8626319362399859671, guid: 12f7cb746cc1d804f830f5d9f3b3d433, type: 3}
-      propertyPath: onClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 7c734aced0ac6284c897bbfd83cf3634, type: 3}
-    - target: {fileID: 8626319362399859671, guid: 12f7cb746cc1d804f830f5d9f3b3d433, type: 3}
-      propertyPath: offClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 69029b856ff8efc4c8a764a4f5e84536, type: 3}
     - target: {fileID: 8637230454851803071, guid: 12f7cb746cc1d804f830f5d9f3b3d433, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.0685465
@@ -4315,7 +4311,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8637230454851803071, guid: 12f7cb746cc1d804f830f5d9f3b3d433, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.26199996
+      value: -0.762
       objectReference: {fileID: 0}
     - target: {fileID: 8637230454851803071, guid: 12f7cb746cc1d804f830f5d9f3b3d433, type: 3}
       propertyPath: m_LocalPosition.z

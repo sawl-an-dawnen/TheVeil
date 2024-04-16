@@ -363,7 +363,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdfbd48261242a34ab706ca7e7f5b9b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inPossessionOf: 0
   heightChange: 0.5
   flame: {fileID: 4719710264058209671}
-  onClip: {fileID: 0}
-  offClip: {fileID: 0}
+  onClip: {fileID: 8300000, guid: 7c734aced0ac6284c897bbfd83cf3634, type: 3}
+  offClip: {fileID: 8300000, guid: 69029b856ff8efc4c8a764a4f5e84536, type: 3}
+  referenceLighter: {fileID: 8626319362399859671}

@@ -1,12 +1,14 @@
 using UnityEngine;
 using System.Collections;
 
-public class Lighter : MonoBehaviour
+public class Lighter : MonoBehaviour, IInteractable
 {
+    public bool inPossessionOf = false;
     public float heightChange = 0.5f;
     public GameObject flame;
     public AudioClip onClip, offClip;
-    private bool status = true;
+    public Lighter referenceLighter;
+    private bool status = false;
     private AudioSource audioSource;
 
 
@@ -17,11 +19,11 @@ public class Lighter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F) && status)
+        if (inPossessionOf && Input.GetKeyDown(KeyCode.F) && status)
         {
             TurnOff();
         }
-        else if (Input.GetKeyDown(KeyCode.F) && !status)
+        else if (inPossessionOf && Input.GetKeyDown(KeyCode.F) && !status)
         {
             TurnOn();
         }
@@ -40,5 +42,27 @@ public class Lighter : MonoBehaviour
         gameObject.transform.localPosition = new Vector3(gameObject.transform.localPosition.x, gameObject.transform.localPosition.y - heightChange, gameObject.transform.localPosition.z);
         flame.SetActive(false);
         status = false;
+    }
+
+    public void AquireLighter() {
+        referenceLighter.inPossessionOf = true;
+        referenceLighter.TurnOn();
+        Destroy(gameObject);
+    }
+    public void LoseLighter() {
+        referenceLighter.inPossessionOf = false;
+        referenceLighter.TurnOff();
+    }
+
+    public void Interact() {
+        AquireLighter();
+    }
+
+    public string Prompt
+    {
+        get
+        {
+            return "[pick up]";
+        }
     }
 }
