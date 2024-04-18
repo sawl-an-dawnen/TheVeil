@@ -10,10 +10,12 @@ public class Lighter : MonoBehaviour, IInteractable
     public Lighter referenceLighter;
     private bool status = false;
     private AudioSource audioSource;
+    private AudioSource ambientSound;
 
     private void Awake()
     {
         audioSource = GameObject.FindGameObjectWithTag("SFX-2").GetComponent<AudioSource>();
+        ambientSound = gameObject.GetComponent<AudioSource>();
     }
     // Update is called once per frame
     void Update()
@@ -34,8 +36,10 @@ public class Lighter : MonoBehaviour, IInteractable
         gameObject.transform.localPosition = new Vector3(gameObject.transform.localPosition.x, gameObject.transform.localPosition.y + heightChange, gameObject.transform.localPosition.z);
         flame.SetActive(true);
         status = true;
+        ambientSound.enabled = true;
     }
     public void TurnOff() {
+        ambientSound.enabled = false;
         audioSource.Stop();
         audioSource.PlayOneShot(offClip);
         gameObject.transform.localPosition = new Vector3(gameObject.transform.localPosition.x, gameObject.transform.localPosition.y - heightChange, gameObject.transform.localPosition.z);

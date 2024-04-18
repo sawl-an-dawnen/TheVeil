@@ -811,6 +811,9 @@ MonoBehaviour:
   leftButton: {fileID: 5136315516513572674}
   rightButton: {fileID: 974637382353807964}
   closeButton: {fileID: 2703501206575736543}
+  leftSound: {fileID: 8300000, guid: 190071aa85e6ecc48ae4028d2d97538e, type: 3}
+  rightSound: {fileID: 8300000, guid: 8c9bfe4def93ae04ebbd0b08904e726e, type: 3}
+  closeSound: {fileID: 8300000, guid: 54dfece17f043314b8a07f9aca5f9cd8, type: 3}
 --- !u!1 &1319315492474076532
 GameObject:
   m_ObjectHideFlags: 0
@@ -995,11 +998,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueCanvas: {fileID: 3670188618810850490}
-  promptCanvas: {fileID: 7464644069483077247}
-  crosshairCanvas: {fileID: 2211379621331799648}
   textUI: {fileID: 4744393779849340514}
   rightButton: {fileID: 7540361531869907568}
   closeButton: {fileID: 2784233112195761210}
+  rightSound: {fileID: 8300000, guid: 8c9bfe4def93ae04ebbd0b08904e726e, type: 3}
+  closeSound: {fileID: 8300000, guid: 190071aa85e6ecc48ae4028d2d97538e, type: 3}
 --- !u!1 &1893965747257422342
 GameObject:
   m_ObjectHideFlags: 0
@@ -1129,7 +1132,7 @@ GameObject:
   - component: {fileID: 7170247535892976166}
   m_Layer: 0
   m_Name: CrosshairAndStamina
-  m_TagString: Untagged
+  m_TagString: Crosshair
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1936,6 +1939,7 @@ GameObject:
   - component: {fileID: 5532806461227891360}
   - component: {fileID: 1092041930179469090}
   - component: {fileID: 2072529975279384318}
+  - component: {fileID: 1012164247955062717}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2130,6 +2134,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactRange: 2
+--- !u!114 &1012164247955062717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4177867554319088602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e43a86f7e9bbcd2409a5995e51c6316f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4266542224171935472
 GameObject:
   m_ObjectHideFlags: 0
@@ -3416,6 +3432,7 @@ MonoBehaviour:
   fadeInTime: 5
   fadeOutTime: 5
   textureOverride: {fileID: 0}
+  fading: 0
 --- !u!1 &7242050542223003041
 GameObject:
   m_ObjectHideFlags: 0

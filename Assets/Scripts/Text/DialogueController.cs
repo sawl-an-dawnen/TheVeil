@@ -5,25 +5,22 @@ using UnityEngine.UI;
 public class DialogueController : MonoBehaviour
 {
     public GameObject dialogueCanvas;
-    public GameObject promptCanvas;
-    public GameObject crosshairCanvas;
     public TextMeshProUGUI textUI;
     public Button rightButton;
     public Button closeButton;
+    public AudioClip rightSound, closeSound;
+    private GameManager manager;
     private string[] lines;
     private int i = 0;
     private bool active = false;
-    private FirstPersonController control;
-    private Interactor interactor;
-    private Rigidbody rb;
     private Camera playerCamera;
+    private AudioSource audioSource;
 
     private void Awake()
     {
-        control = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>();
-        interactor = GameObject.FindGameObjectWithTag("Player").GetComponent<Interactor>();
-        rb = control.gameObject.GetComponent<Rigidbody>();
+        manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         playerCamera = Camera.main;
+        audioSource = GameObject.FindGameObjectWithTag("SFX-2").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -42,12 +39,8 @@ public class DialogueController : MonoBehaviour
 
     public void Speak(string[] lines, GameObject lookAt)
     {
+        manager.FreezeControl();
         playerCamera.transform.LookAt(lookAt.transform);
-        rb.velocity = Vector3.zero;
-        control.enabled = false;
-        interactor.enabled = false;
-        promptCanvas.SetActive(false);
-        crosshairCanvas.SetActive(false);
         dialogueCanvas.SetActive(true);
         this.lines = lines;
         active = true;
@@ -56,6 +49,8 @@ public class DialogueController : MonoBehaviour
 
     public void Continue()
     {
+        audioSource.Stop();
+        audioSource.PlayOneShot(rightSound);
         if (i < lines.Length - 1)
         {
             i++;
@@ -63,6 +58,8 @@ public class DialogueController : MonoBehaviour
     }
     public void CloseDialogue()
     {
+        audioSource.Stop();
+        audioSource.PlayOneShot(closeSound);
         textUI.text = "";
         active = false;
         lines = null;
@@ -70,10 +67,9 @@ public class DialogueController : MonoBehaviour
         rightButton.gameObject.SetActive(true);
         closeButton.gameObject.SetActive(false);
         dialogueCanvas.SetActive(false);
-        promptCanvas.SetActive(true);
-        crosshairCanvas.SetActive(true);
-        control.enabled = true;
-        interactor.enabled = true;
+        manager.ReleaseControl();
         Cursor.lockState = CursorLockMode.Locked;
     }
+
+    public void DeactivateControl() { }
 }

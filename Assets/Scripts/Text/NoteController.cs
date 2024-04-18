@@ -10,16 +10,19 @@ public class NoteController : MonoBehaviour
     public Button leftButton;
     public Button rightButton;
     public Button closeButton;
+    public AudioClip leftSound, rightSound, closeSound;
     private string[] pages;
     private int i = 0;
     private bool active = false;
     private FirstPersonController control;
     private Interactor interactor;
+    private AudioSource audioSource;
 
     private void Awake()
     {
         control = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>();
         interactor = GameObject.FindGameObjectWithTag("Player").GetComponent<Interactor>();
+        audioSource = GameObject.FindGameObjectWithTag("SFX-2").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -56,22 +59,26 @@ public class NoteController : MonoBehaviour
         visualUI.texture = visual;
         active = true;
         Time.timeScale = 0;
-        Camera.main.GetComponent<AudioListener>().enabled = false;
         Cursor.lockState = CursorLockMode.None;
     }
 
     public void PageLeft() {
+        audioSource.Stop();
+        audioSource.PlayOneShot(leftSound);
         if (i > 0) {
             i--;        
         }
     }
     public void PageRight() {
+        audioSource.Stop();
+        audioSource.PlayOneShot(rightSound);
         if (i < pages.Length - 1) {
             i++;
         }
     }
     public void CloseNote() {
-
+        audioSource.Stop();
+        audioSource.PlayOneShot(closeSound);
         active = false;
         pages = null;
         visualUI.texture = null;
@@ -80,7 +87,6 @@ public class NoteController : MonoBehaviour
         control.enabled = true;
         interactor.enabled = true;
         Time.timeScale = 1;
-        Camera.main.GetComponent<AudioListener>().enabled = true;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
