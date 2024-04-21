@@ -19,6 +19,7 @@ using UnityEditor;
 public class FirstPersonController : MonoBehaviour
 {
     private Rigidbody rb;
+    private CapsuleCollider cc;
     public Animator animator;
 
     #region Camera Movement Variables
@@ -66,7 +67,7 @@ public class FirstPersonController : MonoBehaviour
     public float maxVelocityChange = 10f;
 
     // Internal Variables
-    private bool isWalking = false;
+    public bool isWalking = false;
 
     #region Sprint
 
@@ -89,7 +90,7 @@ public class FirstPersonController : MonoBehaviour
 
     // Internal Variables
     private CanvasGroup sprintBarCG;
-    private bool isSprinting = false;
+    public bool isSprinting = false;
     private float sprintRemaining;
     private float sprintBarWidth;
     private float sprintBarHeight;
@@ -105,7 +106,7 @@ public class FirstPersonController : MonoBehaviour
     public float jumpPower = 5f;
 
     // Internal Variables
-    private bool isGrounded = false;
+    public bool isGrounded = false;
 
     #endregion
 
@@ -118,8 +119,9 @@ public class FirstPersonController : MonoBehaviour
     public float speedReduction = .5f;
 
     // Internal Variables
-    private bool isCrouched = false;
+    public bool isCrouched = false;
     private Vector3 originalScale;
+    private float originalHeight;
 
     #endregion
     #endregion
@@ -140,12 +142,14 @@ public class FirstPersonController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        cc = GetComponent<CapsuleCollider>();
 
         crosshairObject = GetComponentInChildren<Image>();
 
         // Set internal variables
         playerCamera.fieldOfView = fov;
         originalScale = transform.localScale;
+        originalHeight = cc.height;
         jointOriginalPos = joint.localPosition;
 
         if (!unlimitedSprint)
@@ -504,7 +508,8 @@ public class FirstPersonController : MonoBehaviour
         // Brings walkSpeed back up to original speed
         if(isCrouched)
         {
-            transform.localScale = new Vector3(originalScale.x, originalScale.y, originalScale.z);
+            //transform.localScale = new Vector3(originalScale.x, originalScale.y, originalScale.z);
+            cc.height = originalHeight;
             walkSpeed /= speedReduction;
 
             isCrouched = false;
@@ -513,7 +518,8 @@ public class FirstPersonController : MonoBehaviour
         // Reduces walkSpeed
         else
         {
-            transform.localScale = new Vector3(originalScale.x, crouchHeight, originalScale.z);
+            //transform.localScale = new Vector3(originalScale.x, crouchHeight, originalScale.z);
+            cc.height = originalHeight*.3f;
             walkSpeed *= speedReduction;
 
             isCrouched = true;

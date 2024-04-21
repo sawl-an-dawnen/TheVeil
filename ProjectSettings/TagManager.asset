@@ -16,6 +16,9 @@ TagManager:
   - Fade_Controller
   - GameManager
   - Crosshair
+  - Grass
+  - Wood
+  - Concrete
   layers:
   - Default
   - TransparentFX

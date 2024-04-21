@@ -2095,6 +2095,7 @@ MonoBehaviour:
   playerCanMove: 1
   walkSpeed: 2
   maxVelocityChange: 10
+  isWalking: 0
   enableSprint: 1
   unlimitedSprint: 1
   sprintKey: 304
@@ -2109,14 +2110,17 @@ MonoBehaviour:
   sprintBar: {fileID: 2433673251650507645}
   sprintBarWidthPercent: 0.3
   sprintBarHeightPercent: 0.02
+  isSprinting: 0
   enableJump: 0
   jumpKey: 32
   jumpPower: 3
+  isGrounded: 0
   enableCrouch: 1
   holdToCrouch: 1
   crouchKey: 306
   crouchHeight: 0.5
   speedReduction: 0.7
+  isCrouched: 0
   enableHeadBob: 1
   joint: {fileID: 7093119106363544991}
   bobSpeed: 10.4
@@ -2146,6 +2150,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e43a86f7e9bbcd2409a5995e51c6316f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  woodSurfaceClips: []
+  concreteSurfaceClips: []
+  grassSurfaceClips: []
 --- !u!1 &4266542224171935472
 GameObject:
   m_ObjectHideFlags: 0
