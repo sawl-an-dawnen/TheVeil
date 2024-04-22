@@ -17,11 +17,11 @@ public class Footsteps : MonoBehaviour
     void Awake()
     {
         fpc = gameObject.GetComponent<FirstPersonController>();
-        audioSource = GameObject.FindGameObjectWithTag("Footsteps").GetComponent<AudioSource>();
+        audioSource = GameObject.FindGameObjectWithTag("FootSteps").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Ray r_0 = new(gameObject.transform.position, -gameObject.transform.up);//cast ray down
         if (Physics.Raycast(r_0, out RaycastHit hitInfo_0))
@@ -45,14 +45,13 @@ public class Footsteps : MonoBehaviour
                 }
             }
         }
-
-        if (fpc.isWalking && fpc.isGrounded)
+        Debug.Log(fpc.isGrounded);
+        if ((Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) && fpc.isGrounded)
         {
-            audioSource.volume = stepVolume;
             timer -= Time.deltaTime;
-
-            if (timer <= 0) 
+            if (timer <= 0)
             {
+                audioSource.volume = stepVolume;
                 timer = footstepTimer;
                 if (fpc.isSprinting)
                 {
@@ -64,17 +63,20 @@ public class Footsteps : MonoBehaviour
                     audioSource.volume = stepVolume * .5f;
                     timer = footstepTimer * 1.5f;
                 }
-                switch (index) 
+                switch (index)
                 {
                     case 0:
+                        Debug.Log("WoodSound");
                         stepIndex = Random.Range(0, woodSurfaceClips.Length);
                         audioSource.PlayOneShot(woodSurfaceClips[stepIndex]);
                         break;
                     case 1:
+                        Debug.Log("ConcreteSound");
                         stepIndex = Random.Range(0, concreteSurfaceClips.Length);
                         audioSource.PlayOneShot(concreteSurfaceClips[stepIndex]);
                         break;
                     case 2:
+                        Debug.Log("GrassSound");
                         stepIndex = Random.Range(0, grassSurfaceClips.Length);
                         audioSource.PlayOneShot(grassSurfaceClips[stepIndex]);
                         break;
