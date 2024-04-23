@@ -3,6 +3,7 @@ using UnityEngine;
 public class Bed : MonoBehaviour, IInteractable
 {
     public AudioClip soundEffect;
+    public bool nextDay;
 
     private FadeController fader;
     private bool activated = false;
@@ -23,8 +24,13 @@ public class Bed : MonoBehaviour, IInteractable
         {
             Debug.Log("ACTIVE FADING");
         }
-        else if (activated) {
+        else if (activated)
+        {
             Debug.Log("SLEEPING");
+            if (nextDay) 
+            { 
+                gameObject.GetComponent<SceneLoader>().LoadScene();
+            }
         }
     }
 

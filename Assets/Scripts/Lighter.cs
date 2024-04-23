@@ -12,6 +12,8 @@ public class Lighter : MonoBehaviour, IInteractable
     private AudioSource audioSource;
     private AudioSource ambientSound;
 
+    public InteractionBlock block;
+
     private void Awake()
     {
         audioSource = GameObject.FindGameObjectWithTag("SFX-2").GetComponent<AudioSource>();
@@ -59,6 +61,7 @@ public class Lighter : MonoBehaviour, IInteractable
 
     public void Interact() {
         AquireLighter();
+        Destroy(block);
     }
 
     public string Prompt
