@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class SlidingDoor : MonoBehaviour, IInteractable
 {
-    public float speed = 0.5f;
+    public float openSpeed = 0.5f;
+    public float closeSpeed = 0.5f;
     public float distance = 1f;
     public AudioClip openClip;
     public AudioClip closeClip;
@@ -21,6 +22,7 @@ public class SlidingDoor : MonoBehaviour, IInteractable
 
     private void Awake()
     {
+        audioSource = GameObject.FindWithTag("SFX-1").GetComponent<AudioSource>();
         //audioSource = GameObject.FindWithTag("Player_AudioSource").GetComponent<AudioSource>();
         if (zAxis)
         {
@@ -51,7 +53,7 @@ public class SlidingDoor : MonoBehaviour, IInteractable
             {
                 try { audioSource.PlayOneShot(closeClip); } //play the close door audio
                 catch { }
-                StartCoroutine(moveObject(gameObject.transform.position, new Vector3(gameObject.transform.position.x + x, gameObject.transform.position.y, gameObject.transform.position.z + z), speed));
+                StartCoroutine(moveObject(gameObject.transform.position, new Vector3(gameObject.transform.position.x + x, gameObject.transform.position.y, gameObject.transform.position.z + z), closeSpeed));
                 //gameObject.transform.rotation = Quaternion.Slerp(gameObject.transform.rotation, Quaternion.Euler(gameObject.transform.eulerAngles.x, gameObject.transform.eulerAngles.y - degree, gameObject.transform.eulerAngles.z), speed);
                 isOpen = false;
             }
@@ -59,7 +61,7 @@ public class SlidingDoor : MonoBehaviour, IInteractable
             {
                 try { audioSource.PlayOneShot(openClip); } //play the open door audio
                 catch { }
-                StartCoroutine(moveObject(gameObject.transform.position, new Vector3(gameObject.transform.position.x - x, gameObject.transform.position.y, gameObject.transform.position.z - z), speed));
+                StartCoroutine(moveObject(gameObject.transform.position, new Vector3(gameObject.transform.position.x - x, gameObject.transform.position.y, gameObject.transform.position.z - z), openSpeed));
                 //gameObject.transform.rotation = Quaternion.Slerp(gameObject.transform.rotation, Quaternion.Euler(gameObject.transform.eulerAngles.x, gameObject.transform.eulerAngles.y + degree, gameObject.transform.eulerAngles.z), speed);
                 isOpen = true;
             }
@@ -103,7 +105,7 @@ public class SlidingDoor : MonoBehaviour, IInteractable
         {
             try { audioSource.PlayOneShot(closeClip); } //play the close door audio
             catch { }
-            StartCoroutine(moveObject(gameObject.transform.position, new Vector3(gameObject.transform.position.x + x, gameObject.transform.position.y, gameObject.transform.position.z + z), speed));
+            StartCoroutine(moveObject(gameObject.transform.position, new Vector3(gameObject.transform.position.x + x, gameObject.transform.position.y, gameObject.transform.position.z + z), closeSpeed));
             //gameObject.transform.rotation = Quaternion.Slerp(gameObject.transform.rotation, Quaternion.Euler(gameObject.transform.eulerAngles.x, gameObject.transform.eulerAngles.y - degree, gameObject.transform.eulerAngles.z), speed);
             isOpen = false;
         }
@@ -115,7 +117,7 @@ public class SlidingDoor : MonoBehaviour, IInteractable
         {
             try { audioSource.PlayOneShot(openClip); } //play the open door audio
             catch { }
-            StartCoroutine(moveObject(gameObject.transform.position, new Vector3(gameObject.transform.position.x - x, gameObject.transform.position.y, gameObject.transform.position.z - z), speed));
+            StartCoroutine(moveObject(gameObject.transform.position, new Vector3(gameObject.transform.position.x - x, gameObject.transform.position.y, gameObject.transform.position.z - z), openSpeed));
             //gameObject.transform.rotation = Quaternion.Slerp(gameObject.transform.rotation, Quaternion.Euler(gameObject.transform.eulerAngles.x, gameObject.transform.eulerAngles.y + degree, gameObject.transform.eulerAngles.z), speed);
             isOpen = true;
         }

@@ -27,7 +27,7 @@ public class Interactor : MonoBehaviour
             {
                 Debug.DrawRay(interactorSource.position, interactorSource.forward * interactRange, Color.green);
                 cursorPrompt.text = obj.Prompt;
-                if (Input.GetKeyDown(KeyCode.E))
+                if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0))
                     Action(obj);
             }
             else
