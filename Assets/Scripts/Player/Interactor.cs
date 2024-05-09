@@ -45,7 +45,7 @@ public class Interactor : MonoBehaviour
 
     private void Action(IInteractable interactObj)
     {
-        Debug.Log("INTERACT");
+        //Debug.Log("INTERACT");
         interactObj.Interact();
     }
 }

@@ -31,7 +31,7 @@ public class BillBoard : MonoBehaviour
 
         playerPosition = playerTransform.position;
         distanceToPlayer = Mathf.Abs(Vector3.Magnitude(gameObject.transform.position - playerPosition));
-        Debug.Log(distanceToPlayer);
+        //Debug.Log(distanceToPlayer);
 
         if (distanceToPlayer < visibleDistance)
         {

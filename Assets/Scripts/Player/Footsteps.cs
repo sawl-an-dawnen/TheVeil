@@ -29,7 +29,7 @@ public class Footsteps : MonoBehaviour
             if (hitInfo_0.collider.gameObject)
             {
                 //Debug.DrawRay(raySource.position, -raySource.up, Color.green);
-                Debug.Log(hitInfo_0.collider.tag);
+                //Debug.Log(hitInfo_0.collider.tag);
 
                 switch (hitInfo_0.collider.tag) 
                 {
@@ -45,7 +45,7 @@ public class Footsteps : MonoBehaviour
                 }
             }
         }
-        Debug.Log(fpc.isGrounded);
+        //Debug.Log(fpc.isGrounded);
         if ((Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) && fpc.isGrounded)
         {
             timer -= Time.deltaTime;
@@ -66,22 +66,27 @@ public class Footsteps : MonoBehaviour
                 switch (index)
                 {
                     case 0:
-                        Debug.Log("WoodSound");
+                        //Debug.Log("WoodSound");
                         stepIndex = Random.Range(0, woodSurfaceClips.Length);
                         audioSource.PlayOneShot(woodSurfaceClips[stepIndex]);
                         break;
                     case 1:
-                        Debug.Log("ConcreteSound");
+                        //Debug.Log("ConcreteSound");
                         stepIndex = Random.Range(0, concreteSurfaceClips.Length);
                         audioSource.PlayOneShot(concreteSurfaceClips[stepIndex]);
                         break;
                     case 2:
-                        Debug.Log("GrassSound");
+                        //Debug.Log("GrassSound");
                         stepIndex = Random.Range(0, grassSurfaceClips.Length);
                         audioSource.PlayOneShot(grassSurfaceClips[stepIndex]);
                         break;
                 }
             }
         }
+    }
+
+    void OnCollisionEnter(Collision collisionData)
+    {
+        Debug.Log(collisionData.gameObject.name);
     }
 }
