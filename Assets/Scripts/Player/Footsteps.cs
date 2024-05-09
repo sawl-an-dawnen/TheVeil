@@ -85,8 +85,10 @@ public class Footsteps : MonoBehaviour
         }
     }
 
+    /*
     void OnCollisionEnter(Collision collisionData)
     {
         Debug.Log(collisionData.gameObject.name);
     }
+    */
 }

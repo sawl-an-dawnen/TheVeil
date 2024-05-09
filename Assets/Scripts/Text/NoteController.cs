@@ -14,14 +14,12 @@ public class NoteController : MonoBehaviour
     private string[] pages;
     private int i = 0;
     private bool active = false;
-    private FirstPersonController control;
-    private Interactor interactor;
+    private GameManager manager;
     private AudioSource audioSource;
 
     private void Awake()
     {
-        control = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>();
-        interactor = GameObject.FindGameObjectWithTag("Player").GetComponent<Interactor>();
+        manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         audioSource = GameObject.FindGameObjectWithTag("SFX-2").GetComponent<AudioSource>();
     }
 
@@ -52,8 +50,7 @@ public class NoteController : MonoBehaviour
 
     public void ReadNote(string[] pages, Texture2D visual) 
     {
-        control.enabled = false;
-        interactor.enabled = false;
+        manager.FreezeControl();
         noteCanvas.SetActive(true);
         this.pages = pages;
         visualUI.texture = visual;
@@ -84,11 +81,8 @@ public class NoteController : MonoBehaviour
         visualUI.texture = null;
         i = 0;
         noteCanvas.SetActive(false);
-        control.enabled = true;
-        interactor.enabled = true;
+        manager.ReleaseControl();
         Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Locked;
     }
-
-
 }
