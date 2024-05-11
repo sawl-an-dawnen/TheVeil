@@ -1,7 +1,5 @@
 using UnityEngine;
-using TMPro;
 using System.Collections;
-using System.Xml.Serialization;
 
 public class PhysicalDoor : MonoBehaviour, IInteractable
 {

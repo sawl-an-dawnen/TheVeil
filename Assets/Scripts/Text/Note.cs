@@ -8,6 +8,7 @@ public class Note : MonoBehaviour, IInteractable
     private NoteController noteController;
     private AudioSource audioSource;
 
+
     void Awake()
     {
         noteController = GameObject.FindGameObjectWithTag("Note_Controller").GetComponent<NoteController>();

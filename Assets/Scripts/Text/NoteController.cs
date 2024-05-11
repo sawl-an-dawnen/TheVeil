@@ -1,6 +1,8 @@
+using System.Globalization;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class NoteController : MonoBehaviour
 {
@@ -51,6 +53,7 @@ public class NoteController : MonoBehaviour
     public void ReadNote(string[] pages, Texture2D visual) 
     {
         manager.FreezeControl();
+        manager.Focus(true,true,true);
         noteCanvas.SetActive(true);
         this.pages = pages;
         visualUI.texture = visual;
@@ -82,6 +85,7 @@ public class NoteController : MonoBehaviour
         i = 0;
         noteCanvas.SetActive(false);
         manager.ReleaseControl();
+        manager.ReleaseFocus();
         Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Locked;
     }

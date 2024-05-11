@@ -40,6 +40,7 @@ public class DialogueController : MonoBehaviour
     public void Speak(string[] lines, GameObject lookAt)
     {
         manager.FreezeControl();
+        manager.Focus(true, false, false);
         playerCamera.transform.LookAt(lookAt.transform);
         dialogueCanvas.SetActive(true);
         this.lines = lines;
@@ -70,6 +71,4 @@ public class DialogueController : MonoBehaviour
         manager.ReleaseControl();
         Cursor.lockState = CursorLockMode.Locked;
     }
-
-    public void DeactivateControl() { }
 }
