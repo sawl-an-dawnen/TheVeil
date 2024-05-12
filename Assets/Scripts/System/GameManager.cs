@@ -1,8 +1,17 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.Video;
+using System;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+
+    public bool invertedCamera = false;
+    [Range(0.1f, 10)]
+    public float sensitivity = 2f;
+
     private GameObject crosshairCanvas;
     private GameObject promptCanvas;
     private GameObject player;
@@ -16,6 +25,22 @@ public class GameManager : MonoBehaviour
 
     // Start is called before the first frame update
     void Awake()
+    {
+        crosshairCanvas = GameObject.FindGameObjectWithTag("Crosshair");
+        promptCanvas = GameObject.FindGameObjectWithTag("Cursor_Prompt");
+        player = GameObject.FindGameObjectWithTag("Player");
+        control = player.GetComponent<FirstPersonController>();
+        interactor = player.GetComponent<Interactor>();
+        footsteps = player.GetComponent<Footsteps>();
+        rb = player.GetComponent<Rigidbody>();
+    }
+
+    private void Update()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode) 
     {
         crosshairCanvas = GameObject.FindGameObjectWithTag("Crosshair");
         promptCanvas = GameObject.FindGameObjectWithTag("Cursor_Prompt");
@@ -93,5 +118,17 @@ public class GameManager : MonoBehaviour
             }
 
         }
+    }
+
+    public void updateSensitivity(UnityEngine.UI.Slider s)
+    {
+        sensitivity = s.value * 10f;
+        control.mouseSensitivity = sensitivity;
+    }
+
+    public void updateInversion(UnityEngine.UI.Toggle t)
+    {
+        invertedCamera = t.isOn;
+        control.invertCamera = invertedCamera;
     }
 }

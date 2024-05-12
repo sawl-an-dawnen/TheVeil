@@ -14,7 +14,7 @@ public class PauseMenu : MonoBehaviour
 
     //private AudioSource audioSource;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         audioSource = GameObject.FindGameObjectWithTag("SFX-2").GetComponent<AudioSource>();

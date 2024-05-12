@@ -20,9 +20,11 @@ using UnityEditor;
 
 public class FirstPersonController : MonoBehaviour
 {
+    public Animator animator;
     private Rigidbody rb;
     private CapsuleCollider cc;
-    public Animator animator;
+    private GameManager manager;
+    
 
     #region Camera Movement Variables
 
@@ -145,6 +147,7 @@ public class FirstPersonController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         cc = GetComponent<CapsuleCollider>();
+        manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
 
         crosshairObject = GetComponentInChildren<Image>();
 
@@ -163,6 +166,9 @@ public class FirstPersonController : MonoBehaviour
 
     void Start()
     {
+        invertCamera = manager.invertedCamera;
+        mouseSensitivity = manager.sensitivity;
+
         if(lockCursor)
         {
             Cursor.lockState = CursorLockMode.Locked;
