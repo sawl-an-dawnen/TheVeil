@@ -23,16 +23,19 @@ public class Lamp : MonoBehaviour, IInteractable
         if (power && status)
         {
             text = "[turn off]";
+            lightComponent.enabled = true;
         }
         //if off
         if (power && !status)
         {
             text = "[turn on]";
+            lightComponent.enabled = false;
         }
         //no power
         if (!power)
         {
             text = "[no power]";
+            lightComponent.enabled = false;
         }
     }
 
@@ -48,7 +51,7 @@ public class Lamp : MonoBehaviour, IInteractable
     {
         get
         {
-            return this.text;
+            return text;
         }
     }
 }

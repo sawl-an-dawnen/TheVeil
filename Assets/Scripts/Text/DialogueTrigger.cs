@@ -2,19 +2,26 @@ using UnityEngine;
 using TMPro;
 using System.Threading;
 
-public class DialogueTrigger : MonoBehaviour
+public class DialogueTrigger : MonoBehaviour, IInteractable
 {
     public GameObject dialogueCanvas;
     public TextMeshProUGUI textUI;
     public string[] lines;
     public float duration;
+    public string prompt;
     public bool destroyOnUse = true;
     private int i = 0;
     private bool active = false;
     private float timer = 0;
     private float lineTime;
+    private GameManager manager;
 
     private void Awake()
+    {
+        manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+    }
+
+    private void Start()
     {
         lineTime = duration / lines.Length;
     }
@@ -54,12 +61,32 @@ public class DialogueTrigger : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
+        manager.Focus(true, false, false);
+        
         if (other.gameObject.CompareTag("Player")) 
         {
             dialogueCanvas.SetActive(true);
             i = 0;
             timer = 0;
             active = true;
+        }
+
+    }
+
+    public void Interact()
+    {
+        manager.Focus(true, false, false);
+        dialogueCanvas.SetActive(true);
+        i = 0;
+        timer = 0;
+        active = true;
+    }
+
+    public string Prompt
+    {
+        get
+        {
+            return prompt;
         }
     }
 

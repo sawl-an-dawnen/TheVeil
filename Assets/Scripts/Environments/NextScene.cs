@@ -1,9 +1,11 @@
 using UnityEngine;
 
-public class Bed : MonoBehaviour, IInteractable
+public class NextScene : MonoBehaviour, IInteractable
 {
     public AudioClip soundEffect;
-    public bool nextDay;
+
+    public string prompt;
+    //public bool progressToNextScene;
 
     private FadeController fader;
     private bool activated = false;
@@ -26,11 +28,7 @@ public class Bed : MonoBehaviour, IInteractable
         }
         else if (activated)
         {
-            Debug.Log("SLEEPING");
-            if (nextDay) 
-            { 
-                gameObject.GetComponent<SceneLoader>().LoadScene();
-            }
+            gameObject.GetComponent<SceneLoader>().LoadScene();
         }
     }
 

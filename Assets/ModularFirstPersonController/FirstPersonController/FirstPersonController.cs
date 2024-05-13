@@ -20,15 +20,14 @@ using UnityEditor;
 
 public class FirstPersonController : MonoBehaviour
 {
-    public Animator animator;
-    private Rigidbody rb;
-    private CapsuleCollider cc;
-    private GameManager manager;
+
+
     
 
     #region Camera Movement Variables
 
     public Camera playerCamera;
+    public Animator animator;
 
     public float fov = 60f;
     public bool invertCamera = false;
@@ -49,6 +48,9 @@ public class FirstPersonController : MonoBehaviour
 
     // reference
     private Interactor interactor;
+    private Rigidbody rb;
+    private CapsuleCollider cc;
+    private GameManager manager;
 
     #region Camera Zoom Variables
 
@@ -215,8 +217,6 @@ public class FirstPersonController : MonoBehaviour
 
         #endregion
     }
-
-    float camRotation;
 
     private void Update()
     {
@@ -409,6 +409,7 @@ public class FirstPersonController : MonoBehaviour
                 animator.SetBool("Backward", false);
             }
             */
+
             // Checks if player is walking and isGrounded
             // Will allow head bob
             if (targetVelocity.x != 0 || targetVelocity.z != 0 && isGrounded)

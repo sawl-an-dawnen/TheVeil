@@ -31,6 +31,7 @@ public class PhysicalDoor : MonoBehaviour, IInteractable
     {
         if (locked)
         {
+            audioSource.Stop();
             audioSource.PlayOneShot(lockedClip);
         }
         else

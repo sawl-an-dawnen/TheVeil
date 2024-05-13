@@ -33,11 +33,12 @@ public class GameManager : MonoBehaviour
         interactor = player.GetComponent<Interactor>();
         footsteps = player.GetComponent<Footsteps>();
         rb = player.GetComponent<Rigidbody>();
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void Update()
     {
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) 

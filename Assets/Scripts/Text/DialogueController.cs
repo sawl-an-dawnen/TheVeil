@@ -13,6 +13,9 @@ public class DialogueController : MonoBehaviour
     private string[] lines;
     private int i = 0;
     private bool active = false;
+    private bool activeThought = false;
+    private float timer = 0;
+    private float lineTime;
     private Camera playerCamera;
     private AudioSource audioSource;
 
@@ -57,6 +60,7 @@ public class DialogueController : MonoBehaviour
             i++;
         }
     }
+
     public void CloseDialogue()
     {
         audioSource.Stop();
@@ -71,4 +75,5 @@ public class DialogueController : MonoBehaviour
         manager.ReleaseControl();
         Cursor.lockState = CursorLockMode.Locked;
     }
+
 }
