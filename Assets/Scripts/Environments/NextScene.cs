@@ -3,7 +3,6 @@ using UnityEngine;
 public class NextScene : MonoBehaviour, IInteractable
 {
     public AudioClip soundEffect;
-
     public string prompt;
     //public bool progressToNextScene;
 
@@ -44,7 +43,7 @@ public class NextScene : MonoBehaviour, IInteractable
     {
         get
         {
-            return "[sleep]";
+            return prompt;
         }
     }
 }

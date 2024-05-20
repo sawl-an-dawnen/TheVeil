@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Cul-de-sac_Template.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/Cul-de-sac_Intro.unity
+    path: Assets/Scenes/Intro_Scene.unity
     guid: 0364ac4bc2110eb4497cbe759440e1cc
+  - enabled: 1
+    path: Assets/Scenes/Evening_Scene.unity
+    guid: b4968b906f5e5d949a2e377b31d44732
   m_configObjects: {}
