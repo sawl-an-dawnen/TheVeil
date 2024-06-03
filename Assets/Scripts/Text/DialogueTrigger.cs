@@ -9,6 +9,7 @@ public class DialogueTrigger : MonoBehaviour, IInteractable
     public string[] lines;
     public float duration;
     public string prompt;
+    public GameObject[] activate, destroy;
     public bool destroyOnUse = true;
     private int i = 0;
     private bool active = false;
@@ -69,6 +70,14 @@ public class DialogueTrigger : MonoBehaviour, IInteractable
             i = 0;
             timer = 0;
             active = true;
+            foreach (GameObject a in activate)
+            {
+                a.SetActive(true);
+            }
+            foreach (GameObject d in destroy)
+            {
+                Destroy(d);
+            }
         }
 
     }
