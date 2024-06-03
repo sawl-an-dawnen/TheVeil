@@ -3369,8 +3369,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d90ba6530d9bfda47abb4610956b2f44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 3365109154946714007}
   playerCamera: {fileID: 5876031260131672547}
+  animator: {fileID: 3365109154946714007}
   fov: 60
   invertCamera: 0
   cameraCanMove: 1
@@ -4423,6 +4423,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseCanvas: {fileID: 7915860048644765120}
+  settingsCanvas: {fileID: 4283251654033102221}
   pauseSound: {fileID: 8300000, guid: 54dfece17f043314b8a07f9aca5f9cd8, type: 3}
   selectionSound: {fileID: 8300000, guid: 190071aa85e6ecc48ae4028d2d97538e, type: 3}
 --- !u!1 &5920286818299052957

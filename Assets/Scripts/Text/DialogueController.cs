@@ -1,4 +1,6 @@
+using System;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,6 +20,7 @@ public class DialogueController : MonoBehaviour
     private float lineTime;
     private Camera playerCamera;
     private AudioSource audioSource;
+    private GameObject[] activate, destroy;
 
     private void Awake()
     {
@@ -40,12 +43,14 @@ public class DialogueController : MonoBehaviour
         }
     }
 
-    public void Speak(string[] lines, GameObject lookAt)
+    public void Speak(string[] lines, GameObject lookAt, GameObject[] activate, GameObject[] destroy)
     {
         manager.FreezeControl();
         manager.Focus(true, false, false);
         playerCamera.transform.LookAt(lookAt.transform);
         dialogueCanvas.SetActive(true);
+        this.activate = activate;
+        this.destroy = destroy;
         this.lines = lines;
         active = true;
         Cursor.lockState = CursorLockMode.None;
@@ -69,6 +74,17 @@ public class DialogueController : MonoBehaviour
         active = false;
         lines = null;
         i = 0;
+
+        foreach (GameObject a in activate)
+        {
+            a.SetActive(true);
+        }
+        foreach (GameObject d in destroy)
+        {
+            Destroy(d);
+        }
+        activate = null;
+        destroy = null;
         rightButton.gameObject.SetActive(true);
         closeButton.gameObject.SetActive(false);
         dialogueCanvas.SetActive(false);

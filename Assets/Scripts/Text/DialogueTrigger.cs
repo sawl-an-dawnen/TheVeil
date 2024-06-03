@@ -75,11 +75,14 @@ public class DialogueTrigger : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        manager.Focus(true, false, false);
-        dialogueCanvas.SetActive(true);
-        i = 0;
-        timer = 0;
-        active = true;
+        if (!gameObject.GetComponent<Collider>().isTrigger)
+        {
+            manager.Focus(true, false, false);
+            dialogueCanvas.SetActive(true);
+            i = 0;
+            timer = 0;
+            active = true;
+        }
     }
 
     public string Prompt

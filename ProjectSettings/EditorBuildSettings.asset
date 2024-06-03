@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Dream_01_Scene.unity
     guid: 0f271f9eb6adc614ab963e006009b42d
+  - enabled: 1
+    path: Assets/Scenes/First_Day_Scene.unity
+    guid: 93e86d82b09632f449cbbfddc317d004
   m_configObjects: {}

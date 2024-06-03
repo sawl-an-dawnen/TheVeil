@@ -24,16 +24,8 @@ public class Note : MonoBehaviour, IInteractable
     {
         audioSource.Stop();
         audioSource.PlayOneShot(soundEffect);
-        noteController.ReadNote(pages, visual);
+        noteController.ReadNote(pages, visual, activate, destroy);
 
-        foreach (GameObject a in activate)
-        {
-            a.SetActive(true);
-        }
-        foreach (GameObject d in destroy)
-        {
-            Destroy(d);
-        }
         if (destroyOnInteract)
         {
             Destroy(gameObject);

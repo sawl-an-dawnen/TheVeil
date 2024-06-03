@@ -13,11 +13,13 @@ public class NoteController : MonoBehaviour
     public Button rightButton;
     public Button closeButton;
     public AudioClip leftSound, rightSound, closeSound;
+    [HideInInspector]
+    public bool active = false;
     private string[] pages;
     private int i = 0;
-    private bool active = false;
     private GameManager manager;
     private AudioSource audioSource;
+    private GameObject[] activate, destroy;
 
     private void Awake()
     {
@@ -50,13 +52,15 @@ public class NoteController : MonoBehaviour
         }
     }
 
-    public void ReadNote(string[] pages, Texture2D visual) 
+    public void ReadNote(string[] pages, Texture2D visual, GameObject[] activate, GameObject[] destroy)
     {
         manager.FreezeControl();
         manager.Focus(true,true,true);
         noteCanvas.SetActive(true);
         this.pages = pages;
         visualUI.texture = visual;
+        this.activate = activate;
+        this.destroy = destroy;
         active = true;
         Time.timeScale = 0;
         Cursor.lockState = CursorLockMode.None;
@@ -83,6 +87,16 @@ public class NoteController : MonoBehaviour
         pages = null;
         visualUI.texture = null;
         i = 0;
+        foreach (GameObject a in activate)
+        {
+            a.SetActive(true);
+        }
+        foreach (GameObject d in destroy)
+        {
+            Destroy(d);
+        }
+        activate = null;
+        destroy = null;
         noteCanvas.SetActive(false);
         manager.ReleaseControl();
         manager.ReleaseFocus();

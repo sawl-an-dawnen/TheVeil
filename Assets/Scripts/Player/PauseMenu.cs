@@ -5,7 +5,7 @@ using UnityEngine.Video;
 
 public class PauseMenu : MonoBehaviour
 {
-    public GameObject pauseCanvas;
+    public GameObject pauseCanvas, settingsCanvas;
     public AudioClip pauseSound, selectionSound;
     private bool active = false;
     private GameManager manager;
@@ -47,6 +47,7 @@ public class PauseMenu : MonoBehaviour
     {
         audioSource.PlayOneShot(selectionSound);
         pauseCanvas.SetActive(false);
+        settingsCanvas.SetActive(false);
         manager.ReleaseControl();
         manager.ReleaseFocus();
         active = false;

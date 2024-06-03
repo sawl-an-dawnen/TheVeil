@@ -19,18 +19,11 @@ public class Dialogue : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        dialogueController.Speak(lines, lookAtObject);
-        if (destroyOnInteract) 
+        dialogueController.Speak(lines, lookAtObject, activate, destroy);
+
+        if (destroyOnInteract)
         {
             Destroy(this);
-        }
-        foreach (GameObject a in activate)
-        {
-            a.SetActive(true);
-        }
-        foreach (GameObject d in destroy)
-        {
-            Destroy(d);
         }
     }
 
