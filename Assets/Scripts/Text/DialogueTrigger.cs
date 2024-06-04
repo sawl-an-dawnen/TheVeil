@@ -66,6 +66,10 @@ public class DialogueTrigger : MonoBehaviour, IInteractable
         
         if (other.gameObject.CompareTag("Player")) 
         {
+            if (destroyOnUse)
+            {
+                Destroy(gameObject.GetComponent<Collider>());
+            }
             dialogueCanvas.SetActive(true);
             i = 0;
             timer = 0;
@@ -104,9 +108,13 @@ public class DialogueTrigger : MonoBehaviour, IInteractable
 
     public void Reset() 
     {
-        active = false;
         timer = 0f;
         textUI.text = "";
         dialogueCanvas.SetActive(false);
+        if (destroyOnUse && active)
+        {
+            Destroy(gameObject);
+        }
+        active = false;
     }
 }
