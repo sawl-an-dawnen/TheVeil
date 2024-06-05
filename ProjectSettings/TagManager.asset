@@ -19,6 +19,7 @@ TagManager:
   - Grass
   - Wood
   - Concrete
+  - UI_JumpScare_Raw
   layers:
   - Default
   - TransparentFX
