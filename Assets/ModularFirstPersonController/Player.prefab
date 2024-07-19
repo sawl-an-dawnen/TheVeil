@@ -997,6 +997,7 @@ MonoBehaviour:
   leftSound: {fileID: 8300000, guid: 190071aa85e6ecc48ae4028d2d97538e, type: 3}
   rightSound: {fileID: 8300000, guid: 8c9bfe4def93ae04ebbd0b08904e726e, type: 3}
   closeSound: {fileID: 8300000, guid: 54dfece17f043314b8a07f9aca5f9cd8, type: 3}
+  active: 0
 --- !u!1 &1319315492474076532
 GameObject:
   m_ObjectHideFlags: 0
@@ -4388,7 +4389,7 @@ GameObject:
   - component: {fileID: 2356616703267052318}
   m_Layer: 0
   m_Name: PauseMenu
-  m_TagString: Untagged
+  m_TagString: PauseMenu
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
