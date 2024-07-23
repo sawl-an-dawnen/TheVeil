@@ -1,4 +1,6 @@
 using UnityEngine;
+
+using UnityEngine;
 using System.Collections;
 
 public class Lighter : MonoBehaviour, IInteractable
@@ -8,13 +10,24 @@ public class Lighter : MonoBehaviour, IInteractable
     public GameObject flame;
     public AudioClip onClip, offClip;
     public Lighter referenceLighter;
+
+    public bool triggerEvent = false;
+    public AudioClip eventSoundEffect;
+    public PhysicalDoor door;
+    public GameObject[] activate;
+    public GameObject[] destroy;
+
+
+
     private bool status = false;
     private AudioSource audioSource;
+    private AudioSource audioSource_2;
     private AudioSource ambientSound;
 
     private void Awake()
     {
         audioSource = GameObject.FindGameObjectWithTag("SFX-2").GetComponent<AudioSource>();
+        audioSource_2 = GameObject.FindGameObjectWithTag("SFX-1").GetComponent<AudioSource>();
         ambientSound = gameObject.GetComponent<AudioSource>();
     }
     // Update is called once per frame
@@ -56,9 +69,23 @@ public class Lighter : MonoBehaviour, IInteractable
         referenceLighter.inPossessionOf = false;
         referenceLighter.TurnOff();
     }
+    public void TriggerEvent() 
+    {
+        door.CloseDoor(true);
+        audioSource_2.PlayOneShot(eventSoundEffect);
+        foreach (GameObject a in activate)
+        {
+            a.SetActive(true);
+        }
+        foreach (GameObject d in destroy)
+        {
+            Destroy(d);
+        }
+    }
 
     public void Interact() {
         AquireLighter();
+        if (triggerEvent) TriggerEvent();
     }
 
     public string Prompt

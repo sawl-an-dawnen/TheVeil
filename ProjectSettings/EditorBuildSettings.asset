@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/06_SecondDay_01.unity
     guid: 20ddde7cbd15d7a4ba9033735809ce15
+  - enabled: 1
+    path: Assets/Scenes/07_Dream02.unity
+    guid: 2400bffc857c86141ac0a7c06ecbc1c7
   m_configObjects: {}

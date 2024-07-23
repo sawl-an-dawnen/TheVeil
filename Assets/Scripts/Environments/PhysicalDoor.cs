@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PhysicalDoor : MonoBehaviour, IInteractable
 {
@@ -95,12 +96,15 @@ public class PhysicalDoor : MonoBehaviour, IInteractable
         locked = false;
     }
 
-    public void CloseDoor()
+    public void CloseDoor(bool sound)
     {
         if (isOpen && !coroutineRunning)
         {
-            try { audioSource.PlayOneShot(closeClip); } //play the close door audio
-            catch { }
+            if (sound)
+            {
+                try { audioSource.PlayOneShot(closeClip); } //play the close door audio
+                catch { }
+            }
             StartCoroutine(rotateObject(gameObject.transform.rotation, Quaternion.Euler(gameObject.transform.eulerAngles.x, gameObject.transform.eulerAngles.y - degree, gameObject.transform.eulerAngles.z), speed));
             isOpen = false;
         }
@@ -117,6 +121,18 @@ public class PhysicalDoor : MonoBehaviour, IInteractable
             }
             StartCoroutine(rotateObject(gameObject.transform.rotation, Quaternion.Euler(gameObject.transform.eulerAngles.x, gameObject.transform.eulerAngles.y + degree, gameObject.transform.eulerAngles.z), speed));
             isOpen = true;
+        }
+    }
+
+    public void ToggleDoor(bool sound) 
+    {
+        if (isOpen) //if the door is open and the coroutine isn't running, rotate back to closed position
+        {
+            CloseDoor(sound);
+        }
+        if (!isOpen) //if the door is closed and the coroutine isn't running, rotate back to open position
+        {
+            OpenDoor(sound);
         }
     }
 }

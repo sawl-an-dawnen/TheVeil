@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class JumpFade : MonoBehaviour
 {
-    public AudioClip trapSound;
     public Texture2D jumpScareImage;
+    public AudioClip trapSound;
     public float visibleTime = 1f;
     public float fadeSpeed = 3f;
     private float vTimer;
