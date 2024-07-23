@@ -9,6 +9,7 @@ public class PhysicalDoor : MonoBehaviour, IInteractable
     public AudioClip closeClip;
     public bool locked = false;
     public AudioClip lockedClip;
+    public bool startOpen = false;
     [HideInInspector]
     public bool isOpen = false;
     private AudioSource audioSource;
@@ -18,6 +19,14 @@ public class PhysicalDoor : MonoBehaviour, IInteractable
     private void Awake()
     {
         audioSource = GameObject.FindWithTag("SFX-1").GetComponent<AudioSource>();
+    }
+
+    private void Start()
+    {
+        if (startOpen) 
+        {
+            OpenDoor(false);
+        }
     }
 
     private void Update()
@@ -97,12 +106,15 @@ public class PhysicalDoor : MonoBehaviour, IInteractable
         }
     }
 
-    public void OpenDoor()
+    public void OpenDoor(bool sound)
     {
         if (!isOpen && !coroutineRunning)
         {
-            try { audioSource.PlayOneShot(openClip); } //play the open door audio
-            catch { }
+            if (sound)
+            {
+                try { audioSource.PlayOneShot(openClip); } //play the open door audio
+                catch { }
+            }
             StartCoroutine(rotateObject(gameObject.transform.rotation, Quaternion.Euler(gameObject.transform.eulerAngles.x, gameObject.transform.eulerAngles.y + degree, gameObject.transform.eulerAngles.z), speed));
             isOpen = true;
         }
