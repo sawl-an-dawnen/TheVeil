@@ -11,7 +11,7 @@ public class TriggerImage : MonoBehaviour
     //private PlayerManager playerManager;
     private RawImage jumpScareImage;
     private AudioSource jumpScareAudio;
-    private bool activated = false;
+    //private bool activated = false;
 
     void Start()
     {
@@ -36,7 +36,7 @@ public class TriggerImage : MonoBehaviour
         jumpScareImage.texture = imageTexture;
         jumpScareImage.enabled = true;
 
-        activated = true;
+        //activated = true;
         jumpScareAudio.PlayOneShot(jumpScareSound);
 
         Vector2 originalSizeDelta = jumpScareImage.rectTransform.sizeDelta;
@@ -47,7 +47,7 @@ public class TriggerImage : MonoBehaviour
 
         jumpScareImage.rectTransform.sizeDelta = originalSizeDelta;
 
-        activated = false;
+        //activated = false;
         jumpScareImage.enabled = false;
         //playerManager.ActivateControl();
         Destroy(gameObject);

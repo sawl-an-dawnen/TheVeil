@@ -34,10 +34,11 @@ public class FadeController : MonoBehaviour
 
     private IEnumerator Fade(float start, float target, float overTime)
     {
+        float colorOverride = (textureOverride != null) ? 1f : 0f;
         float startTime = Time.time;
         while (Time.time < startTime + overTime)
         {
-            image.color = new Color(0f, 0f, 0f, Mathf.Lerp(start, target, (Time.time - startTime) / overTime));
+            image.color = new Color(colorOverride, colorOverride, colorOverride, Mathf.Lerp(start, target, (Time.time - startTime) / overTime));
             yield return null;
         }
         fading = false;

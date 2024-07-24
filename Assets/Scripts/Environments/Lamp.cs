@@ -44,7 +44,7 @@ public class Lamp : MonoBehaviour, IInteractable
         audioSource.Stop();
         audioSource.PlayOneShot(sound);
         status = !status;
-        lightComponent.enabled = !lightComponent.enabled;
+        //lightComponent.enabled = !lightComponent.enabled;
     }
 
     public string Prompt

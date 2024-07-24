@@ -38,7 +38,7 @@ public class OnSightTrigger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -62,7 +62,7 @@ public class OnSightTrigger : MonoBehaviour
             {
                 visible = true;
             }
-            else 
+            else
             {
                 visible = false;
             }
@@ -73,7 +73,7 @@ public class OnSightTrigger : MonoBehaviour
             StartCoroutine(DisplayImage());
             activated = true;
         }
-        if (flag) 
+        if (flag)
         {
             foreach (GameObject a in activate)
             {
@@ -83,7 +83,7 @@ public class OnSightTrigger : MonoBehaviour
             {
                 Destroy(d);
             }
-            foreach (PhysicalDoor pd in doors) 
+            foreach (PhysicalDoor pd in doors)
             {
                 pd.ToggleDoor(true);
             }
@@ -114,5 +114,14 @@ public class OnSightTrigger : MonoBehaviour
         imageUI.enabled = false;
         //playerManager.ActivateControl();
         //Destroy(gameObject);
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            StartCoroutine(DisplayImage());
+            activated = true;
+        }
     }
 }

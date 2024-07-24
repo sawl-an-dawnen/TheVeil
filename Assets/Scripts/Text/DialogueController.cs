@@ -15,9 +15,9 @@ public class DialogueController : MonoBehaviour
     private string[] lines;
     private int i = 0;
     private bool active = false;
-    private bool activeThought = false;
-    private float timer = 0;
-    private float lineTime;
+    //private bool activeThought = false;
+    //private float timer = 0;
+    //private float lineTime;
     private Camera playerCamera;
     private AudioSource audioSource;
     private GameObject[] activate, destroy;
