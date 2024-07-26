@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7493250537124860949}
   - component: {fileID: 4984771620841706108}
   - component: {fileID: 9203910220566859210}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Dialogue_Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,7 +115,7 @@ GameObject:
   - component: {fileID: 5968301862776418022}
   - component: {fileID: 3385872989609912002}
   - component: {fileID: 5693316210450550773}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: DialogueTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -227,6 +227,9 @@ MonoBehaviour:
   - I think I should go to bed.
   - I'm pretty tired.
   duration: 10
+  prompt: 
+  activate: []
+  destroy: []
   destroyOnUse: 0
 --- !u!1 &7476386541534281540
 GameObject:
@@ -239,7 +242,7 @@ GameObject:
   - component: {fileID: 208986230366711189}
   - component: {fileID: 7743436517858948873}
   - component: {fileID: 4191999303781606397}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Text (TMP)
   m_TagString: Dialogue_Prompt
   m_Icon: {fileID: 0}

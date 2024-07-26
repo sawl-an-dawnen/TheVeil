@@ -29,7 +29,7 @@ public class Footsteps : MonoBehaviour
             if (hitInfo_0.collider.gameObject)
             {
                 //Debug.DrawRay(raySource.position, -raySource.up, Color.green);
-                //Debug.Log(hitInfo_0.collider.tag);
+                Debug.Log(hitInfo_0.collider.name);
 
                 switch (hitInfo_0.collider.tag) 
                 {

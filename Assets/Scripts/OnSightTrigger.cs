@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class OnSightTrigger : MonoBehaviour
 {
+    public bool collisionOnly = false;
     public float angleThreshold = 30f; //the angle at which look away will trigger
 
     public float timeToTrigger = 3f;
@@ -70,8 +71,11 @@ public class OnSightTrigger : MonoBehaviour
 
         if (visible && angle < angleThreshold && !activated)
         {
-            StartCoroutine(DisplayImage());
-            activated = true;
+            if (!collisionOnly)
+            {
+                StartCoroutine(DisplayImage());
+                activated = true;
+            }
         }
         if (flag)
         {
@@ -94,17 +98,19 @@ public class OnSightTrigger : MonoBehaviour
 
     private IEnumerator DisplayImage()
     {
-        yield return new WaitForSeconds(timeToTrigger);
-        //playerManager.DeactivateControl();
-        imageUI.texture = imageTexture;
-        imageUI.enabled = true;
-
-        activated = true;
-        audioSource.PlayOneShot(sound);
-
         Vector2 originalSizeDelta = imageUI.rectTransform.sizeDelta;
-        float textureAspect = (float)imageTexture.width / imageTexture.height;
-        imageUI.rectTransform.sizeDelta = new Vector2(imageUI.rectTransform.sizeDelta.y * textureAspect, imageUI.rectTransform.sizeDelta.y);
+        if (imageTexture != null) { 
+            yield return new WaitForSeconds(timeToTrigger);
+            //playerManager.DeactivateControl();
+            imageUI.texture = imageTexture;
+            imageUI.enabled = true;
+
+            activated = true;
+            audioSource.PlayOneShot(sound);
+
+            float textureAspect = (float)imageTexture.width / imageTexture.height;
+            imageUI.rectTransform.sizeDelta = new Vector2(imageUI.rectTransform.sizeDelta.y * textureAspect, imageUI.rectTransform.sizeDelta.y);
+        }   
 
         yield return new WaitForSeconds(time);
 
