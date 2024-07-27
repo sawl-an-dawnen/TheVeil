@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/08_ThirdDay_01.unity
     guid: c3621a0aac9547d4c946d8567dea99eb
+  - enabled: 1
+    path: Assets/Scenes/09_FourthDay.unity
+    guid: 1a37b29a2c8252d40be3793d856d3f3a
   m_configObjects: {}
