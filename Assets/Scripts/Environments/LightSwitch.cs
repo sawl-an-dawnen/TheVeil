@@ -11,11 +11,24 @@ public class LightSwitch : MonoBehaviour, IInteractable
 
     void Awake() {
         audioSource = GameObject.FindGameObjectWithTag("SFX-2").GetComponent<AudioSource>();
-        proxy = lights[0];
+        if (lights.Length != 0)
+        {
+            proxy = lights[0];
+        }
+        else 
+        {
+            proxy = null;
+        }
     }
 
     void Update()
     {
+        //no power
+        if (proxy == null || !proxy.power)
+        {
+            text = "[no power]";
+            return;
+        }
         //if on
         if (proxy.power && proxy.status) {
             text = "[turn off]";
@@ -24,19 +37,18 @@ public class LightSwitch : MonoBehaviour, IInteractable
         if (proxy.power && !proxy.status) {
             text = "[turn on]";
         }
-        //no power
-        if (!proxy.power)
-        {
-            text = "[no power]";
-        }
+
     }
 
     public void Interact() {
         audioSource.Stop();
         audioSource.PlayOneShot(sound);
-        foreach (PhysicalLight l in lights)
+        if (lights.Length != 0)
         {
-            l.status = !l.status;
+            foreach (PhysicalLight l in lights)
+            {
+                l.status = !l.status;
+            }
         }
     }
 
