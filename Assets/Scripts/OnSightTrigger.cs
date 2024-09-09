@@ -8,18 +8,13 @@ public class OnSightTrigger : MonoBehaviour
 {
     public bool collisionOnly = false;
     public float angleThreshold = 30f; //the angle at which look away will trigger
-
     public float timeToTrigger = 3f;
     public float time = 1f;
-
-    public Texture2D imageTexture;
+    //public Texture2D imageTexture;
+    public RenderTexture renderTexture;
     public AudioClip sound;
-
-
-
     public GameObject[] activate;
     public GameObject[] destroy;
-
     public PhysicalDoor[] doors; //doors that will toggle open/closer
 
     private Transform playerCameraTransform;
@@ -28,12 +23,16 @@ public class OnSightTrigger : MonoBehaviour
     private bool visible = false;
     private bool activated = false;
     private bool flag = false;
+    private Texture temp;
+    private RawImage renderTextureController;
 
     private void Awake()
     {
         playerCameraTransform = Camera.main.transform;
         imageUI = GameObject.FindGameObjectWithTag("UI_JumpScare_Raw").GetComponent<RawImage>();
         audioSource = GameObject.FindGameObjectWithTag("SFX-2").GetComponent<AudioSource>();
+        renderTextureController = GameObject.FindGameObjectWithTag("RenderTexture_Control").GetComponent<RawImage>();
+        temp = renderTextureController.texture;
     }
 
     // Start is called before the first frame update
@@ -98,26 +97,20 @@ public class OnSightTrigger : MonoBehaviour
 
     private IEnumerator DisplayImage()
     {
-        Vector2 originalSizeDelta = imageUI.rectTransform.sizeDelta;
-        if (imageTexture != null) { 
-            yield return new WaitForSeconds(timeToTrigger);
-            //playerManager.DeactivateControl();
-            imageUI.texture = imageTexture;
-            imageUI.enabled = true;
-
-            activated = true;
-            audioSource.PlayOneShot(sound);
-
-            float textureAspect = (float)imageTexture.width / imageTexture.height;
-            imageUI.rectTransform.sizeDelta = new Vector2(imageUI.rectTransform.sizeDelta.y * textureAspect, imageUI.rectTransform.sizeDelta.y);
-        }   
+        yield return new WaitForSeconds(timeToTrigger);
+        renderTextureController.texture = renderTexture;
+        activated = true;
+        audioSource.PlayOneShot(sound);
+        //float textureAspect = (float)imageTexture.width / imageTexture.height;
+        //imageUI.rectTransform.sizeDelta = new Vector2(imageUI.rectTransform.sizeDelta.y * textureAspect, imageUI.rectTransform.sizeDelta.y);
 
         yield return new WaitForSeconds(time);
 
         flag = true;
-        imageUI.rectTransform.sizeDelta = originalSizeDelta;
+        //imageUI.rectTransform.sizeDelta = originalSizeDelta;
         activated = false;
-        imageUI.enabled = false;
+        renderTextureController.texture = temp;
+        //imageUI.enabled = false;
         //playerManager.ActivateControl();
         //Destroy(gameObject);
     }

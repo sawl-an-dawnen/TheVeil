@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Template-cds.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
+    path: Assets/Scenes/00_Title.unity
+    guid: 02abae10f64f35247b2ef3963c3dd872
   - enabled: 1
     path: Assets/Scenes/01_Intro.unity
     guid: 0364ac4bc2110eb4497cbe759440e1cc
@@ -22,7 +22,7 @@ EditorBuildSettings:
     guid: 93e86d82b09632f449cbbfddc317d004
   - enabled: 1
     path: Assets/Scenes/05_FirstDay_02.unity
-    guid: 02abae10f64f35247b2ef3963c3dd872
+    guid: 6f78197beb8a9074bac0f690ab7e2920
   - enabled: 1
     path: Assets/Scenes/06_SecondDay_01.unity
     guid: 20ddde7cbd15d7a4ba9033735809ce15

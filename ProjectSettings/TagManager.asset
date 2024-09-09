@@ -21,6 +21,7 @@ TagManager:
   - Concrete
   - UI_JumpScare_Raw
   - PauseMenu
+  - RenderTexture_Control
   layers:
   - Default
   - TransparentFX
