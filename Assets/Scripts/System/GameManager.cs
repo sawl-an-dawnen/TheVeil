@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.Video;
 using System;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
     private VideoPlayer[] videos;
     private DialogueTrigger[] dialogues;
     private AudioSource[] audioSources;
+    private bool[] vidStats;
 
     // Start is called before the first frame update
     void Awake()
@@ -36,11 +38,6 @@ public class GameManager : MonoBehaviour
         footsteps = player.GetComponent<Footsteps>();
         rb = player.GetComponent<Rigidbody>();
         SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    private void Update()
-    {
-        
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) 
@@ -87,8 +84,19 @@ public class GameManager : MonoBehaviour
         if (vid)
         {
             videos = FindObjectsOfType<VideoPlayer>();
+            vidStats = new bool[videos.Length];
+            int i = 0;
             foreach (VideoPlayer v in videos)
             {
+                if (v.isPlaying)
+                {
+                    vidStats[i] = true;
+                }
+                else 
+                {
+                    vidStats[i] = false;
+                }
+                i++;
                 v.Pause();
             }
         }
@@ -111,9 +119,14 @@ public class GameManager : MonoBehaviour
     public void ReleaseFocus()
     {
         videos = FindObjectsOfType<VideoPlayer>();
+        int i = 0;
         foreach (VideoPlayer v in videos)
         {
-            v.Play();
+            if (vidStats[i])
+            {
+                v.Play();
+            }
+            i++;
         }
         audioSources = FindObjectsOfType<AudioSource>();
         foreach (AudioSource a in audioSources)

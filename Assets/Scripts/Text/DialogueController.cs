@@ -47,7 +47,9 @@ public class DialogueController : MonoBehaviour
     {
         manager.FreezeControl();
         manager.Focus(true, false, false);
-        playerCamera.transform.LookAt(lookAt.transform);
+        if (lookAt != null) { 
+            playerCamera.transform.LookAt(lookAt.transform); 
+        }
         dialogueCanvas.SetActive(true);
         this.activate = activate;
         this.destroy = destroy;
