@@ -35,12 +35,6 @@ public class OnSightTrigger : MonoBehaviour
         temp = renderTextureController.texture;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -51,12 +45,13 @@ public class OnSightTrigger : MonoBehaviour
         Vector3 playerForward = playerCameraTransform.forward;
 
         float angle = Vector3.Angle(directionToPlayer, playerForward);
-        Debug.Log(angle);
+        //Debug.Log(angle);
 
         //RAY COLLISION
         Ray r_0 = new(gameObject.transform.position, -directionToPlayer);
         if (Physics.Raycast(r_0, out RaycastHit hitInfo_0, 10f, 3))
         {
+            Debug.Log(hitInfo_0.collider.gameObject.name);
             Debug.DrawRay(gameObject.transform.position, -directionToPlayer * 10f, Color.green);
             if (hitInfo_0.collider.tag == "Player")
             {
