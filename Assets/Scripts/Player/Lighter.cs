@@ -69,7 +69,8 @@ public class Lighter : MonoBehaviour, IInteractable
     }
     public void TriggerEvent() 
     {
-        door.CloseDoor(true);
+        if (door != null) { door.CloseDoor(true); }
+
         audioSource_2.PlayOneShot(eventSoundEffect);
         foreach (GameObject a in activate)
         {
