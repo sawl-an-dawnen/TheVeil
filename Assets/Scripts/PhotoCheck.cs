@@ -10,7 +10,7 @@ public class PhotoCheck : MonoBehaviour
     private GameManager gameManager;
     private RawImage image;
 
-    public void Awake() 
+    private void Awake() 
     {
         image = gameObject.GetComponent<RawImage>();
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();

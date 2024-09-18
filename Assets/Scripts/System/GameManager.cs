@@ -49,14 +49,19 @@ public class GameManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) 
     {
-        crosshairCanvas = GameObject.FindGameObjectWithTag("Crosshair");
-        promptCanvas = GameObject.FindGameObjectWithTag("Cursor_Prompt");
-        player = GameObject.FindGameObjectWithTag("Player");
-        control = player.GetComponent<FirstPersonController>();
-        interactor = player.GetComponent<Interactor>();
-        pause = GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<PauseMenu>();
-        footsteps = player.GetComponent<Footsteps>();
-        rb = player.GetComponent<Rigidbody>();
+
+        try {
+            crosshairCanvas = GameObject.FindGameObjectWithTag("Crosshair");
+            promptCanvas = GameObject.FindGameObjectWithTag("Cursor_Prompt");
+            player = GameObject.FindGameObjectWithTag("Player");
+            control = player.GetComponent<FirstPersonController>();
+            interactor = player.GetComponent<Interactor>();
+            pause = GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<PauseMenu>();
+            footsteps = player.GetComponent<Footsteps>();
+            rb = player.GetComponent<Rigidbody>();
+        }
+        catch { }
+        
     }
 
     public void FreezeControl() {

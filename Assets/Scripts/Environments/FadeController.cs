@@ -8,9 +8,10 @@ public class FadeController : MonoBehaviour
     public float fadeInTime = 5f;
     public float fadeOutTime = 5f;
     public Texture textureOverride = null;
-    [HideInInspector]
+    public bool cursorLocked = true;
     public bool fading = false;
     private RawImage image;
+    private IEnumerator couroutine;
 
     private void Awake()
     {
@@ -23,13 +24,21 @@ public class FadeController : MonoBehaviour
     }
 
     public void FadeIn() {
+
         fading = true;
-        StartCoroutine(Fade(1f, 0f, fadeInTime));
+        couroutine = Fade(1f, 0f, fadeInTime);
+        StartCoroutine(couroutine);
     }
 
     public void FadeOut() {
+        if (!cursorLocked) 
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+        StopCoroutine(couroutine);
         fading = true;
-        StartCoroutine(Fade(0f, 1f, fadeOutTime));
+        couroutine = Fade(0f, 1f, fadeInTime);
+        StartCoroutine(couroutine);
     }
 
     private IEnumerator Fade(float start, float target, float overTime)

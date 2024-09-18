@@ -5,6 +5,7 @@ public class Footsteps : MonoBehaviour
 {
     public AudioClip[] woodSurfaceClips, concreteSurfaceClips, grassSurfaceClips;
     public float footstepTimer;
+    public bool silent = false;
 
     private FirstPersonController fpc;
     private AudioSource audioSource;
@@ -29,7 +30,7 @@ public class Footsteps : MonoBehaviour
             if (hitInfo_0.collider.gameObject)
             {
                 //Debug.DrawRay(raySource.position, -raySource.up, Color.green);
-                Debug.Log(hitInfo_0.collider.name);
+                //Debug.Log(hitInfo_0.collider.name);
 
                 switch (hitInfo_0.collider.tag) 
                 {
@@ -63,23 +64,25 @@ public class Footsteps : MonoBehaviour
                     audioSource.volume = stepVolume * .5f;
                     timer = footstepTimer * 1.5f;
                 }
-                switch (index)
-                {
-                    case 0:
-                        //Debug.Log("WoodSound");
-                        stepIndex = Random.Range(0, woodSurfaceClips.Length);
-                        audioSource.PlayOneShot(woodSurfaceClips[stepIndex]);
-                        break;
-                    case 1:
-                        //Debug.Log("ConcreteSound");
-                        stepIndex = Random.Range(0, concreteSurfaceClips.Length);
-                        audioSource.PlayOneShot(concreteSurfaceClips[stepIndex]);
-                        break;
-                    case 2:
-                        //Debug.Log("GrassSound");
-                        stepIndex = Random.Range(0, grassSurfaceClips.Length);
-                        audioSource.PlayOneShot(grassSurfaceClips[stepIndex]);
-                        break;
+                if (!silent) { 
+                    switch (index)
+                    {
+                        case 0:
+                            //Debug.Log("WoodSound");
+                            stepIndex = Random.Range(0, woodSurfaceClips.Length);
+                            audioSource.PlayOneShot(woodSurfaceClips[stepIndex]);
+                            break;
+                        case 1:
+                            //Debug.Log("ConcreteSound");
+                            stepIndex = Random.Range(0, concreteSurfaceClips.Length);
+                            audioSource.PlayOneShot(concreteSurfaceClips[stepIndex]);
+                            break;
+                        case 2:
+                            //Debug.Log("GrassSound");
+                            stepIndex = Random.Range(0, grassSurfaceClips.Length);
+                            audioSource.PlayOneShot(grassSurfaceClips[stepIndex]);
+                            break;
+                    }
                 }
             }
         }

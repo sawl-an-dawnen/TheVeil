@@ -23,7 +23,7 @@ public class NextScene : MonoBehaviour, IInteractable
     {
         if (activated && fader.fading)
         {
-            Debug.Log("ACTIVE FADING");
+            //Debug.Log("ACTIVE FADING");
         }
         else if (activated)
         {
