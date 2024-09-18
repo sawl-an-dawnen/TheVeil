@@ -22,6 +22,11 @@ TagManager:
   - UI_JumpScare_Raw
   - PauseMenu
   - RenderTexture_Control
+  - Photo00
+  - Photo01
+  - Photo02
+  - Photo03
+  - Photo04
   layers:
   - Default
   - TransparentFX

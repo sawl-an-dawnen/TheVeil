@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public bool invertedCamera = false;
     [Range(0.1f, 10)]
     public float sensitivity = 2f;
+    public bool[] photos;
 
     private GameObject crosshairCanvas;
     private GameObject promptCanvas;
@@ -26,6 +27,7 @@ public class GameManager : MonoBehaviour
     private AudioSource[] audioSources;
     private bool[] vidStats;
 
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -38,6 +40,11 @@ public class GameManager : MonoBehaviour
         footsteps = player.GetComponent<Footsteps>();
         rb = player.GetComponent<Rigidbody>();
         SceneManager.sceneLoaded += OnSceneLoaded;
+        photos = new bool[5];
+        for (int i = 0; i < photos.Length; i++) 
+        {
+            photos[i] = false;
+        }
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) 
