@@ -142,11 +142,13 @@ public class FirstPersonController : MonoBehaviour
     // Internal Variables
     private Vector3 jointOriginalPos;
     private float timer = 0;
+    private float walkSpeedTemp;
 
     #endregion
 
     private void Awake()
     {
+        walkSpeedTemp = walkSpeed;
         rb = GetComponent<Rigidbody>();
         cc = GetComponent<CapsuleCollider>();
         manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
@@ -352,6 +354,10 @@ public class FirstPersonController : MonoBehaviour
         #endregion
 
         #region Crouch
+        if (!isCrouched) 
+        {
+            walkSpeed = walkSpeedTemp;
+        }
 
         if (enableCrouch)
         {
